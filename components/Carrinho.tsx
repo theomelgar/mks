@@ -24,6 +24,7 @@ const Container = styled.button`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  margin: 0 80px;
   p{
     font-size: 18px;
   font-weight: 700;

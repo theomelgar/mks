@@ -17,31 +17,28 @@ const Container = styled.div`
   background: #0f52ba;
   color: #ffffff;
   position: fixed;
+  padding: 0 40px;
   top: 0;
   left: 0;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  gap:50%;
   width: 100vw;
   height: 101px;
 `;
 const Titulo = styled.a`
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
   h1 {
     font-size: 40px;
     font-weight: 600;
-    line-height: 19px;
+    line-height: 17px;
     letter-spacing: 0px;
-    text-align: left;
   }
   h2 {
     font-size: 20px;
     font-weight: 300;
-    line-height: 19px;
     letter-spacing: 0px;
-    text-align: left;
   }
 `;
