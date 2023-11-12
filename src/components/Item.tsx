@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
-import Product from "../public/apple-watch.png";
+import Product from "../../public/apple-watch.png";
 
 export default function Item() {
   return (
