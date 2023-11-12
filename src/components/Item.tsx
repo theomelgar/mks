@@ -1,16 +1,30 @@
-import Image from "next/image";
+"use client";
 import styled from "styled-components";
-import Product from "../../public/apple-watch.png";
 
-export default function Item() {
+interface Product {
+  id: number;
+  name: string;
+  photo: string;
+  price: number;
+  description: string;
+  brand: string;
+}
+
+export default function Item({
+  name,
+  photo,
+  price,
+  description,
+  brand,
+}: Product) {
   return (
     <Container>
-      <Image src={Product} alt="Apple Watch"></Image>
+      <img src={photo} alt={name} />
       <Titulo>
-        <h1>Apple Watch Series 4 GPS</h1>
-        <button>R$399</button>
+        <h1>{name}</h1>
+        <button>R${price}</button>
       </Titulo>
-      <h2>Redesigned from scratch and completely revised.</h2>
+      <h2>{description}</h2>
       <Comprar>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -31,30 +45,32 @@ export default function Item() {
 }
 
 const Container = styled.div`
+  padding: 10px;
   width: 217.56px;
   height: 285px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   box-shadow: 0px 2px 8px 0px #00000022;
 
-  padding: 10px;
   border-radius: 10px;
+  position: relative;
   h2 {
     font-size: 10px;
     font-weight: 300;
     line-height: 12px;
-    letter-spacing: 0px;
-    text-align: left;
     color: #2c2c2c;
+  }
+  img {
+    width: 120px;
   }
 `;
 
 const Titulo = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   height: 40px;
   width: 100%;
   gap: 15px;
@@ -73,17 +89,22 @@ const Titulo = styled.div`
     text-align: left;
 
     color: #ffffff;
-    height: 100%;
-
+    height: 30px;
+    border: none;
     border-radius: 5px;
     background-color: #373737;
   }
 `;
 
 const Comprar = styled.button`
-  width: 218px;
+  width: 100%;
   height: 31.91px;
-  border-radius: 0px, 0px, 8px, 8px;
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  border: none;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
   background-color: #0f52ba;
   display: flex;
   justify-content: center;
@@ -93,6 +114,8 @@ const Comprar = styled.button`
   font-weight: 600;
   letter-spacing: 0px;
   gap: 10px;
+  box-shadow: 0px 2px 8px 0px #00000022;
+
   svg {
     width: 20px;
   }

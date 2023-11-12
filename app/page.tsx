@@ -1,9 +1,10 @@
 'use client'
+import { getProdutos } from "@/server/actions";
 import Footer from "../src/components/Footer";
 import Header from "../src/components/Header";
 import Vitrine from "../src/components/Vitrine";
 
-export default function Home() {
+export default  function Home() {
   return (
     <main >
       <Header/>

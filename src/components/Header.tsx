@@ -1,3 +1,4 @@
+'use client'
 import styled from "styled-components";
 import Carrinho from "./Carrinho";
 
@@ -17,6 +18,7 @@ const Container = styled.div`
   background: #0f52ba;
   color: #ffffff;
   position: fixed;
+  z-index: 1;
   padding: 0 40px;
   top: 0;
   left: 0;
@@ -30,6 +32,7 @@ const Titulo = styled.a`
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  gap: 5px;
   h1 {
     font-size: 40px;
     font-weight: 600;

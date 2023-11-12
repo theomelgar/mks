@@ -1,10 +1,10 @@
+'use client'
 import Image from "next/image";
 import styled from "styled-components";
 import Product from "../../public/apple-watch.png";
 import { useState } from "react";
 
 export default function Cartao() {
-  
   const Contador = () => {
     const [count, setCount] = useState(1);
 
@@ -21,7 +21,9 @@ export default function Cartao() {
     return (
       <ContadorContainer>
         <Button onClick={handleDecrease}>-</Button>
+        <h3>|</h3>
         <Count>{count}</Count>
+        <h3>|</h3>
         <Button onClick={handleIncrease}>+</Button>
       </ContadorContainer>
     );
@@ -57,21 +59,31 @@ const Container = styled.div`
     font-size: 20px;
     font-weight: 700;
   }
+  h3{
+    font-size: 15px;
+    font-weight: 200;
+  }
 `;
 
 const ContadorContainer = styled.div`
   display: flex;
+  justify-content: space-around;
   align-items: center;
+  width: 100px;
+  height: 30px;
+  border-radius: 4px;
+  border: 0.3px solid black;
+  border-color: #bfbfbf;
 `;
 
 const Button = styled.button`
-  background: #0f52ba;
-  color: #fff;
   border: none;
   border-radius: 4px;
   padding: 4px 8px;
+  background: none;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 18px;
+  font-weight: 400;
 `;
 
 const Count = styled.span`

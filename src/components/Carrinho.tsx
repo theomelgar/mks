@@ -1,3 +1,4 @@
+'use client'
 import { useState } from "react";
 import styled from "styled-components";
 import Cartao from "./Cartao";
@@ -37,7 +38,7 @@ export default function Carrinho() {
             <Cartao></Cartao>
             <Cartao></Cartao>
             <Cartao></Cartao>
-            <Cartao></Cartao>
+            <Cartao></Cartao> <Cartao></Cartao>
           </Conteudo>
           <Total>
             <h1>Total</h1>
@@ -75,6 +76,7 @@ const SideWindow = styled.div`
   top: 0;
   right: 0;
   width: 486px;
+  max-width: 100vw;
   height: 100vh;
   background: #0f52ba;
   box-shadow: -5px 0px 6px 0px #00000021;
@@ -116,15 +118,19 @@ const Top = styled.div`
 `;
 
 const Conteudo = styled.div`
-  height: 350px;
-  display: flex;
+  display: grid;
+  grid-template-rows: repeat(auto-fill, minmax(95px, 1fr));
+  gap: 40px;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  padding-top:300px; 
-  padding-bottom:20px;
-  overflow-y: auto; 
+  overflow-y: auto;
+  height: 500px;
+  padding: 10px;
+  @media (max-width: 768px) {
+    grid-template-rows: 1fr; 
+    height: 350px;
+  }
+  
 `;
 
 const Total = styled.div`
