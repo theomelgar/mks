@@ -41,7 +41,7 @@ export default function Carrinho() {
             <Cartao></Cartao> <Cartao></Cartao>
           </Conteudo>
           <Total>
-            <h1>Total</h1>
+            <h1>Total:</h1>
             <h1>R$798</h1>
           </Total>
           <Finalizar>Finalizar Compra</Finalizar>

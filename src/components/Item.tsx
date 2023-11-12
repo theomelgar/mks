@@ -1,14 +1,7 @@
 "use client";
+import { Product } from "@/Interfaces/Produtos";
+import Image from "next/image";
 import styled from "styled-components";
-
-interface Product {
-  id: number;
-  name: string;
-  photo: string;
-  price: number;
-  description: string;
-  brand: string;
-}
 
 export default function Item({
   name,
@@ -19,10 +12,10 @@ export default function Item({
 }: Product) {
   return (
     <Container>
-      <img src={photo} alt={name} />
+      <Image src={photo} alt={name} width={124} height={124} />
       <Titulo>
         <h1>{name}</h1>
-        <button>R${price}</button>
+        <p>R${price}</p>
       </Titulo>
       <h2>{description}</h2>
       <Comprar>
@@ -81,13 +74,15 @@ const Titulo = styled.div`
     letter-spacing: 0px;
     text-align: left;
   }
-  button {
+  p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 15px;
     font-weight: 700;
     line-height: 15px;
     letter-spacing: 0px;
-    text-align: left;
-
+    padding: 5px;
     color: #ffffff;
     height: 30px;
     border: none;
