@@ -2,8 +2,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Card from "./Card";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ProductCart } from "@/Interfaces/Produtos";
+import { removeAllProductsFromCart } from "@/redux/store";
 
 export default function Cart({
   setOpenCart,
@@ -14,6 +15,14 @@ export default function Cart({
 }) {
   const toggleSideWindow = () => {
     setOpenCart(!isOpenCart);
+  };
+
+  const dispatch = useDispatch();
+
+  const handleBuy = () => {
+    dispatch(removeAllProductsFromCart(products));
+    setOpenCart(false)
+    return alert("Sua compra foi efetuada com sucesso!");
   };
 
   const { products } = useSelector((state: any) => state.cart);
@@ -30,7 +39,10 @@ export default function Cart({
       acc + parseInt(prod.price) * prod.quantity,
     0
   );
-
+  const buy = quantity.reduce(
+    (acc: number, curr: any) => acc + parseInt(curr.quantity),
+    0
+  );
   return (
     <>
       <Container onClick={toggleSideWindow}>
@@ -64,7 +76,7 @@ export default function Cart({
             <h1>Total:</h1>
             <h1>R${total}</h1>
           </Total>
-          <Buy>Finalizar Compra</Buy>
+          <Buy onClick={handleBuy}>Finalizar Compra</Buy>
         </SideWindow>
       )}
     </>
