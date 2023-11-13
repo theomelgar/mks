@@ -1,15 +1,26 @@
 "use client";
 import { Product } from "@/Interfaces/Produtos";
+import store, { addProduct } from "@/redux/store";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 
 export default function Item({
-  name,
-  photo,
-  price,
-  description,
-  brand,
-}: Product) {
+  products,
+  setOpen,
+}: {
+  products: Product,
+  setOpen: (value: boolean) => void;
+}) {
+  const dispatch = useDispatch();
+
+  const handleComprar = (product: Product) => {
+    dispatch(addProduct(product));
+    setOpen(true)
+  };
+
+  const { name, photo, price, description, brand } = products;
+  
   return (
     <Container>
       <Image src={photo} alt={name} width={124} height={124} />
@@ -18,7 +29,7 @@ export default function Item({
         <p>R${price}</p>
       </Titulo>
       <h2>{description}</h2>
-      <Comprar>
+      <Comprar onClick={() => handleComprar(products)}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

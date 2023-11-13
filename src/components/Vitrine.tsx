@@ -3,17 +3,17 @@ import styled from "styled-components";
 import Item from "./Item";
 import { Product } from "@/Interfaces/Produtos";
 
-
-export default function Vitrine({ produtos }: any) {
-    console.log(produtos)
-    return (
-      <Container>
-        {produtos &&
-          produtos.map((item: Product) => <Item key={item.id} {...item} />)}
-      </Container>
-    );
+export default function Vitrine({ produtos, setIsOpenCart }: any) {
+  
+  return (
+    <Container>
+      {produtos &&
+        produtos.map((item: Product) => (
+          <Item key={item.id} products={item} setOpen={setIsOpenCart} />
+        ))}
+    </Container>
+  );
 }
-
 const Container = styled.div`
   margin: 200px auto;
   display: grid;

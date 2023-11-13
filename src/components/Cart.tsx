@@ -1,14 +1,36 @@
-'use client'
+"use client";
 import { useState } from "react";
 import styled from "styled-components";
-import Cartao from "./Cartao";
+import Card from "./Card";
+import { useSelector } from "react-redux";
+import { ProductCart } from "@/Interfaces/Produtos";
 
-export default function Carrinho() {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function Cart({
+  setOpenCart,
+  isOpenCart,
+}: {
+  setOpenCart: (value: boolean) => void;
+  isOpenCart: boolean;
+}) {
   const toggleSideWindow = () => {
-    setIsOpen(!isOpen);
+    setOpenCart(!isOpenCart);
   };
+
+  const { products } = useSelector((state: any) => state.cart);
+
+  const quantity = useSelector((cartReducer: any) => cartReducer.cart.products);
+
+  const productsCount = quantity.reduce(
+    (acc: number, curr: any) => acc + parseInt(curr.quantity),
+    0
+  );
+
+  const total = products.reduce(
+    (acc: number, prod: ProductCart) =>
+      acc + parseInt(prod.price) * prod.quantity,
+    0
+  );
+
   return (
     <>
       <Container onClick={toggleSideWindow}>
@@ -21,30 +43,28 @@ export default function Carrinho() {
           <path d="M2.25 2.25a.75.75 0 000 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 00-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 000-1.5H5.378A2.25 2.25 0 017.5 15h11.218a.75.75 0 00.674-.421 60.358 60.358 0 002.96-7.228.75.75 0 00-.525-.965A60.864 60.864 0 005.68 4.509l-.232-.867A1.875 1.875 0 003.636 2.25H2.25zM3.75 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM16.5 20.25a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0z" />
         </svg>
 
-        <p>0</p>
+        <p>{productsCount}</p>
       </Container>
-      {isOpen && (
+      {isOpenCart && (
         <SideWindow>
           <Top>
             <h1>Carrinho de compras</h1>{" "}
-            <Fechar onClick={toggleSideWindow}>X</Fechar>
+            <Close onClick={toggleSideWindow}>X</Close>
           </Top>
-          <Conteudo>
-            <Cartao></Cartao>
-            <Cartao></Cartao>
-            <Cartao></Cartao>
-            <Cartao></Cartao>
-            <Cartao></Cartao>
-            <Cartao></Cartao>
-            <Cartao></Cartao>
-            <Cartao></Cartao>
-            <Cartao></Cartao> <Cartao></Cartao>
-          </Conteudo>
+          <Box>
+            {products.length > 0 ? (
+              products.map((item: ProductCart) => (
+                <Card key={item.id} product={item} state={products} />
+              ))
+            ) : (
+              <Zero>Seu carrinho ainda está vazio</Zero>
+            )}
+          </Box>
           <Total>
             <h1>Total:</h1>
-            <h1>R$798</h1>
+            <h1>R${total}</h1>
           </Total>
-          <Finalizar>Finalizar Compra</Finalizar>
+          <Buy>Finalizar Compra</Buy>
         </SideWindow>
       )}
     </>
@@ -82,7 +102,8 @@ const SideWindow = styled.div`
   box-shadow: -5px 0px 6px 0px #00000021;
   z-index: 1;
 `;
-const Fechar = styled.button`
+
+const Close = styled.button`
   position: absolute;
   top: 50px;
   right: 30px;
@@ -92,7 +113,7 @@ const Fechar = styled.button`
   font-weight: 400;
   line-height: 15px;
   border: none;
-  border-radius: 30px;
+  border-radius: 50%;
   background: #000000;
   color: #ffffff;
   cursor: pointer;
@@ -101,6 +122,7 @@ const Fechar = styled.button`
     transform: scale(1.2);
   }
 `;
+
 const Top = styled.div`
   display: flex;
   justify-content: space-around;
@@ -117,7 +139,7 @@ const Top = styled.div`
   }
 `;
 
-const Conteudo = styled.div`
+const Box = styled.div`
   display: grid;
   grid-template-rows: repeat(auto-fill, minmax(95px, 1fr));
   gap: 40px;
@@ -127,10 +149,14 @@ const Conteudo = styled.div`
   height: 500px;
   padding: 10px;
   @media (max-width: 768px) {
-    grid-template-rows: 1fr; 
+    grid-template-rows: 1fr;
     height: 350px;
   }
-  
+`;
+
+const Zero = styled.div`
+  font-size: 26px;
+  font-weight: 500;
 `;
 
 const Total = styled.div`
@@ -146,7 +172,7 @@ const Total = styled.div`
     line-height: 15px;
   }
 `;
-const Finalizar = styled.button`
+const Buy = styled.button`
   width: 100%;
 
   display: flex;

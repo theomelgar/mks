@@ -1,15 +1,15 @@
 'use client'
 import styled from "styled-components";
-import Carrinho from "./Carrinho";
+import Cart from "./Cart";
 
-export default function Header() {
+export default function Header({ setOpenCart, isOpenCart }: { setOpenCart: (value: boolean) => void; isOpenCart: boolean }) {
   return (
     <Container>
       <Titulo>
         <h1>MKS</h1>
         <h2>Sistemas</h2>
       </Titulo>
-      <Carrinho></Carrinho>
+      <Cart setOpenCart={setOpenCart} isOpenCart={isOpenCart}></Cart>
     </Container>
   );
 }
