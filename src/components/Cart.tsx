@@ -39,10 +39,7 @@ export default function Cart({
       acc + parseInt(prod.price) * prod.quantity,
     0
   );
-  const buy = quantity.reduce(
-    (acc: number, curr: any) => acc + parseInt(curr.quantity),
-    0
-  );
+  
   return (
     <>
       <Container onClick={toggleSideWindow}>
@@ -76,7 +73,7 @@ export default function Cart({
             <h1>Total:</h1>
             <h1>R${total}</h1>
           </Total>
-          <Buy onClick={handleBuy}>Finalizar Compra</Buy>
+          <Buy disabled={total === 0 ? true : false} onClick={handleBuy}>Finalizar Compra</Buy>
         </SideWindow>
       )}
     </>
