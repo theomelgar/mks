@@ -1,13 +1,21 @@
 "use client";
 import styled from "styled-components";
 import Item from "./Item";
-
 import { useState } from "react";
+
+type ItemType = {
+  id:number;
+  name:string;
+  photo:string;
+  price:string;
+  description:string;
+  brand:string;
+}
 
 export default function Vitrine({ produtos, setIsOpenCart }: any) {
   const uniqueBrands = new Set();
 
-  produtos.forEach((item: any) => {
+  produtos.forEach((item: ItemType) => {
     uniqueBrands.add(item.brand);
   });
 
@@ -34,7 +42,7 @@ export default function Vitrine({ produtos, setIsOpenCart }: any) {
       </CategoryBarWrapper>
       <Container>
         {produtos
-          .filter((item: any) => !selectedBrand || item.brand === selectedBrand)
+          .filter((item: ItemType) => !selectedBrand || item.brand === selectedBrand)
           .map((item: any) => (
             <Item key={item.id} products={item} setOpen={setIsOpenCart} />
           ))}
