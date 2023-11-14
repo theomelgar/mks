@@ -7,21 +7,21 @@ import { ProductCart } from "@/Interfaces/Produtos";
 import { removeAllProductsFromCart } from "@/redux/store";
 
 export default function Cart({
-  setOpenCart,
+  setIsOpenCart,
   isOpenCart,
 }: {
-  setOpenCart: (value: boolean) => void;
+  setIsOpenCart: (value: boolean) => void;
   isOpenCart: boolean;
 }) {
   const toggleSideWindow = () => {
-    setOpenCart(!isOpenCart);
+    setIsOpenCart(!isOpenCart);
   };
 
   const dispatch = useDispatch();
 
   const handleBuy = () => {
     dispatch(removeAllProductsFromCart(products));
-    setOpenCart(false)
+    setIsOpenCart(false)
     return alert("Sua compra foi efetuada com sucesso!");
   };
 

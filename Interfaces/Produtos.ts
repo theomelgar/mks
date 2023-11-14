@@ -5,6 +5,8 @@ export interface Product {
   price: string;
   description: string;
   brand: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface ProductCart {
@@ -15,10 +17,6 @@ export interface ProductCart {
   quantity: number;
 }
 
-export interface ProductProps extends Product {
-  createdAt?: string;
-  updatedAt?: string;
-}
 export interface CartProductProps {
   product: ProductCart;
   state: ProductCart[];

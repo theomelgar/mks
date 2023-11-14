@@ -1,13 +1,14 @@
 "use client";
-import Footer from "../src/components/Footer";
-import Header from "../src/components/Header";
-import Vitrine from "../src/components/Vitrine";
+
 import { Box, Skeleton, Stack } from "@mui/material";
 import { getProdutos } from "@/server/actions";
 import { useQuery } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import store from "@/redux/store";
 import { useState } from "react";
+import Header from "@/components/Header";
+import Vitrine from "@/components/Vitrine";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   const { data, isLoading } = useQuery({
@@ -49,7 +50,7 @@ export default function Home() {
           </Stack>
         ) : (
           <>
-            <Header setOpenCart={setIsOpenCart} isOpenCart={isOpenCart}/>
+            <Header setIsOpenCart={setIsOpenCart} isOpenCart={isOpenCart}/>
             <Vitrine setIsOpenCart={setIsOpenCart} produtos={data} />
             <Footer />
           </>

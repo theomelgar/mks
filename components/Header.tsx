@@ -2,14 +2,14 @@
 import styled from "styled-components";
 import Cart from "./Cart";
 
-export default function Header({ setOpenCart, isOpenCart }: { setOpenCart: (value: boolean) => void; isOpenCart: boolean }) {
+export default function Header({ setIsOpenCart, isOpenCart }: { setIsOpenCart: (value: boolean) => void; isOpenCart: boolean }) {
   return (
     <Container>
       <Titulo>
         <h1>MKS</h1>
         <h2>Sistemas</h2>
       </Titulo>
-      <Cart setOpenCart={setOpenCart} isOpenCart={isOpenCart}></Cart>
+      <Cart setIsOpenCart={setIsOpenCart} isOpenCart={isOpenCart}></Cart>
     </Container>
   );
 }
