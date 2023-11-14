@@ -20,7 +20,7 @@ export default function Item({
   };
 
   const { name, photo, price, description, brand } = products;
-  
+  console.log(name, photo, price, description,brand)
   return (
     <Container>
       <Image src={photo} alt={name} width={124} height={124} />

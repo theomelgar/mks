@@ -30,13 +30,13 @@ export default function Cart({
   const quantity = useSelector((cartReducer: any) => cartReducer.cart.products);
 
   const productsCount = quantity.reduce(
-    (acc: number, curr: any) => acc + parseInt(curr.quantity),
+    (accumulator: number, current: any) => accumulator + parseInt(current.quantity),
     0
   );
 
   const total = products.reduce(
-    (acc: number, prod: ProductCart) =>
-      acc + parseInt(prod.price) * prod.quantity,
+    (accumulator: number, product: ProductCart) =>
+    accumulator + parseInt(product.price) * product.quantity,
     0
   );
   
@@ -57,7 +57,7 @@ export default function Cart({
       {isOpenCart && (
         <SideWindow>
           <Top>
-            <h1>Carrinho de compras</h1>{" "}
+            <h1>Carrinho de compras</h1>
             <Close onClick={toggleSideWindow}>X</Close>
           </Top>
           <Box>
@@ -73,7 +73,7 @@ export default function Cart({
             <h1>Total:</h1>
             <h1>R${total}</h1>
           </Total>
-          <Buy disabled={total === 0 ? true : false} onClick={handleBuy}>Finalizar Compra</Buy>
+          <Buy disabled={total === 0} onClick={handleBuy}>Finalizar Compra</Buy>
         </SideWindow>
       )}
     </>

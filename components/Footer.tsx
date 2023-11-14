@@ -10,7 +10,7 @@ const Container = styled.div`
   align-items: center;
   background: #eeeeee;
   width: 100%;
-  height: 134px;
+  height: 34px;
   font-size: 12px;
   font-weight: 400;
   line-height: 15px;
